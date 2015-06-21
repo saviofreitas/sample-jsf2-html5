@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	>
+
+	<footer class="footer text-center">
+		#{messages['app.version']}
+	</footer>
+	
+	<div class="ajax-status"/>
+	<script type="text/javascript">
+         function handleAjax(data) {
+             var status = data.status;
+
+             switch (status) {
+                 case "begin":
+                     // This is the start of the AJAX request.
+                     $('#body').addClass('loading');
+                     break;
+
+                 case "complete":
+                     // This is invoked right after AJAX response is returned.
+                     break;
+
+                 case "success":
+                     // This is invoked right after successful processing of AJAX response and update of HTML DOM.
+                     $('#body').removeClass('loading');
+                     break;
+             }
+         }
+         jsf.ajax.addOnEvent(handleAjax);
+    </script> 
+	<script src="#{PATH}/resources/js/bootstrap/bootstrap.min.js"></script>
+</ui:composition>

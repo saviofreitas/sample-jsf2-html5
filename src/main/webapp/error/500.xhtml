@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	template="/template/template.xhtml"
+	>
+
+	<ui:define name="titulo">
+		<span class="glyphicon glyphicon-exclamation-sign" /> Ops! Erro interno (500)
+	</ui:define>
+
+	<ui:define name="body">
+		<div class="alert alert-danger" role="alert">
+  			 Algum erro ocorreu durante o carregamento da página solicitada.
+  			<a href="javascript:history.back()" class="alert-link"><span class="glyphicon glyphicon-circle-arrow-left"/> Voltar</a>
+		</div>
+	</ui:define>
+</ui:composition>	

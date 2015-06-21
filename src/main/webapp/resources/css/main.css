@@ -1,0 +1,107 @@
+body {
+	/*font-family: Arial, Helvetica, sans-serif;
+	font-size: 88%;*/
+	background: white;
+	color: #000;
+	background-color: #F0F0F0;
+	line-height: normal;
+	/*text-align: center;*/
+}
+
+#header {
+	width: 100%;
+	margin: 0 auto;
+	height: 130px;
+	clear: both;
+}
+
+.zone-header {
+	background: #FFF;
+	padding: 20px 0 20px;
+	margin: 0 0 15px 0;
+}
+
+.nome-sistema {
+	color: #00488D;
+	font-family: Helvetica, Arial;
+	font-size: 1.8em;
+}
+.nome-sistema h3{
+	position: relative;
+	top: 10px;
+}
+.nomp{
+	padding: 0;
+	margin: 0;
+}
+
+.nomb{
+	margin: 0;
+}
+
+.mt-150 {
+	margin-top: 50px;
+}
+
+.mt-10 {
+	margin-top: 10px;
+}
+
+.topo-profile {
+	background: #314048;
+	color: #fff;
+}
+
+.top-navigation {
+	background: #314048;
+	color: #fff;
+}
+
+#logo {
+	background: transparent url(../images/logo.png) no-repeat bottom;
+	height: 94px;
+	width: 100%;
+}
+
+#msgs {
+	list-style: none outside none;
+}
+
+.msg-close {
+	margin-top: 13px;
+	margin-right: 5px;	
+}
+
+/* Start by setting display:none to make this hidden.
+ * Then we position it in relation to the viewport window
+ * with position:fixed. Width, height, top and left speak
+ * speak for themselves. Background we set to 80% white with
+ * our animation centered, and no-repeating 
+*/
+.ajax-status {
+    display:    none;
+    position:   fixed;
+    z-index:    99999;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 0, 0, 0, .5 );
+    background-image: url('../images/loading.gif');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+/* When the body has the loading class, we turn
+ * the scrollbar off with overflow:hidden 
+*/
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+ * modal element will be visible 
+*/
+body.loading .ajax-status {
+    display: block;
+}

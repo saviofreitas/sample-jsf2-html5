@@ -1,0 +1,38 @@
+<ui:composition	
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:jsf="http://xmlns.jcp.org/jsf"    
+    xmlns:cl="http://xmlns.jcp.org/jsf/composite/sample"
+	template="/template/template.xhtml"
+	>
+	
+	<ui:define name="body">
+	
+		 <h:form id="form" prependId="false">
+        	
+        	 <div class="form-group">
+                <label for="email">Email</label>    
+	            <input jsf:id="email" type="email" class="form-control" jsf:value="#{mBean.hello}"  placeholder="Entre com seu email" />
+            </div>
+            <button type="Submit" jsf:actionListener="#{mBean.sleep()}">
+                Submit
+                <f:ajax execute="@form"/>
+            </button>
+            <cl:dataTables id="dataTables" value="#{usuarioFaces.usuarios}" var="usuario">
+            	<h:column>
+            		<f:facet name="header">Login</f:facet>
+            		#{usuario.login}
+            	</h:column>
+            	<h:column>
+            		<f:facet name="header">Perfil</f:facet>
+            		#{usuario.perfil}
+            	</h:column>
+            </cl:dataTables>
+        </h:form>
+		
+	</ui:define>
+
+</ui:composition>

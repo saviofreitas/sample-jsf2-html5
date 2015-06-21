@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/template/template.xhtml">
+
+	<ui:define name="titulo">
+		<span class="glyphicon glyphicon-user" /> Alterar Senha
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form id="cad-form" prependId="false" styleClass="form-horizontal" >
+			<div class="well">
+				<h:panelGroup id="form-panel" >					
+					<div class="form-group" >
+						<label for="novaSenha" class="col-sm-2 control-label">Nova Senha</label>
+						<div class="col-sm-3" >
+							<h:inputSecret id="novaSenha" value="#{usuarioFaces.novaSenha}"
+								styleClass="form-control"
+								required="true"
+								requiredMessage="Senha obrigatória."
+								/>
+							<h:message for="novaSenha" errorClass="help-inline" />
+						</div>
+					</div>
+	
+					<div class="form-group" >
+						<label for="confirmacaoSenha" class="col-sm-2 control-label">Senha</label>
+						<div class="col-sm-3" >
+							<h:inputSecret id="confirmacaoSenha" value="#{usuarioFaces.confirmacaoSenha}"
+								styleClass="form-control"
+								required="true"
+								requiredMessage="Senha obrigatória."								
+								 />
+							<h:message for="confirmacaoSenha" errorClass="help-inline" />
+						</div>
+					</div>
+	
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-1">
+							<button type="Submit" class="btn btn-success"
+								jsf:actionListener="#{usuarioFaces.alterarSenha()}">
+								Gravar
+								<f:ajax execute="@all" render="cad-form msg-area" />
+							</button>
+						</div>	
+					</div>
+			</h:panelGroup>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

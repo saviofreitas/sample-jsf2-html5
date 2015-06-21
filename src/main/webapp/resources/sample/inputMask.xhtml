@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+	xmlns="http://www.w3.org/1999/xhtml" 	
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite">	
+
+	<cc:interface>
+		<cc:editableValueHolder name="id" targets="#{cc.clientId}" />
+		<cc:attribute name="value" required="false" />
+		<cc:attribute name="rendered" required="false" />
+		<cc:attribute name="label" required="false" />
+		<cc:attribute name="style" required="false" />
+		<cc:attribute name="styleClass" required="false" default="form-control"/>
+		<cc:attribute name="required" default="false" />
+		<cc:attribute name="requiredMessage" required="false" />
+		<cc:attribute name="converter" required="false" type="javax.faces.convert.Converter"/>
+		<cc:attribute name="converterMessage" required="false" />
+		<cc:attribute name="mask" required="true"  />
+	</cc:interface>
+		
+	<cc:implementation>
+		<h:inputText id="#{cc.clientId}" value="#{cc.attrs.value}"
+			styleClass="#{cc.attrs.styleClass}"
+			required="#{cc.attrs.required}"
+			requiredMessage="#{cc.attrs.requiredMessage}"
+			converter="#{cc.attrs.converter}" converterMessage="#{cc.attrs.converterMessage}">
+			
+			<cc:insertChildren/>
+		</h:inputText>
+		<script>
+			jQuery("[id^=#{cc.clientId}]").mask("#{cc.attrs.mask}",{placeholder:" "});
+		</script>
+	</cc:implementation>
+</html>

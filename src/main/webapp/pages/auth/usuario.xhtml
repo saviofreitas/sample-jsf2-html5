@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:custom="http://xmlns.jcp.org/jsf/composite/sample"
+	template="/template/template.xhtml">
+
+	<ui:define name="titulo">
+		<span class="glyphicon glyphicon-user" /> Gerenciamento de Usuários
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form id="cad-form" prependId="false" styleClass="form-horizontal">
+			<div class="well">
+				<h:panelGroup id="form-panel" >
+					<div class="form-group">
+						<label for="login" class="col-sm-2 control-label">Login</label>
+						<div class="col-sm-3">
+							<h:inputText id="login" value="#{usuarioFaces.usuario.login}"
+								styleClass="form-control"  />
+							<h:message for="login" errorClass="help-inline" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="perfil" class="col-sm-2 control-label">Perfil</label>
+						<div class="col-sm-3">
+							<h:selectOneMenu id="perfil" value="#{usuarioFaces.usuario.perfil}" 
+								styleClass="form-control">
+								<f:selectItems value="#{usuarioFaces.perfis}" />
+							</h:selectOneMenu>
+							<h:message for="perfil" errorClass="help-inline" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-1">
+							<button type="Submit" class="btn btn-success"
+								jsf:actionListener="#{usuarioFaces.gravar()}">
+								Gravar
+								<f:ajax execute="@all" render="cad-form panel-list msg-area" />
+							</button>
+						</div>
+					</div>
+				</h:panelGroup>
+			</div>	
+			<div class="well">
+				<h:panelGroup id="list-panel" >					
+					<custom:dataTables id="dataTable"
+						styleClass="table table-bordered table-hover table-striped"
+						var="usuario" value="#{usuarioFaces.usuarios}">
+						<h:column>
+							<f:facet name="header">Login</f:facet>
+							#{usuario.login}
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Perfil</f:facet>
+							#{usuario.perfil}
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Ativo</f:facet>
+							<h:outputText value="#{usuario.ativo}"
+								converter="simNaoConverter" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Ações</f:facet>
+							<ul class="list-inline">
+								<li><h:commandLink
+									actionListener="#{usuarioFaces.prepararUpdate(usuario)}"
+									styleClass="btn btn-info btn-xs">
+									<span class="glyphicon glyphicon-pencil" /> Alterar							
+								<f:ajax execute="@form" render="@form" />
+								</h:commandLink></li>
+								
+								<li><button type="button" class="btn btn-warning btn-xs" jsf:rendered="#{not usuario.ativo}"
+									jsf:actionListener="#{usuarioFaces.alterarStatus(usuario)}">
+									<span class="glyphicon glyphicon-ok" /> Ativar 
+									<f:ajax execute="@form" render="@form msg-area" />
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" jsf:rendered="#{usuario.ativo}"
+									jsf:actionListener="#{usuarioFaces.alterarStatus(usuario)}">
+									<span class="glyphicon glyphicon-remove" /> Desativar 
+									<f:ajax execute="@form" render="@form msg-area" />
+								</button></li>
+							</ul>
+						</h:column>
+					</custom:dataTables>
+
+				</h:panelGroup>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

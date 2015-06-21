@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+<ui:param name="PATH" value="#{facesContext.externalContext.requestContextPath}" />
+
+<cc:interface>
+	<cc:editableValueHolder name="id" targets="#{cc.clientId}" />
+	<cc:attribute name="value" type="java.util.List" />
+	<cc:attribute name="var" required="true" />
+	<cc:attribute name="styleClass" default="table table-bordered table-hover table-striped" />
+</cc:interface>
+
+<cc:implementation>
+	<link type="text/css" rel="stylesheet" href="#{PATH}/resources/css/dataTables.bootstrap.css" />
+	<script src="#{PATH}/resources/js/jquery.dataTables.js"></script>
+	<script src="#{PATH}/resources/js/dataTables.bootstrap.js"></script>
+	
+	<h:dataTable id="#{cc.clientId}" value="#{cc.attrs.value}"
+		styleClass="#{cc.attrs.styleClass}">
+		<c:set target="#{component}" property="var" value="#{cc.attrs.var}"/>
+		<cc:insertChildren />
+
+	</h:dataTable>
+	<script>
+			$(document).ready(function(){
+				
+			    $('[id^=#{cc.clientId}]').DataTable({
+					"oLanguage" : {
+					    "sEmptyTable": "Nenhum registro encontrado",
+					    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+					    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+					    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+					    "sInfoPostFix": "",
+					    "sInfoThousands": ".",
+					    "sLengthMenu": "_MENU_ resultados por página",
+					    "sLoadingRecords": "Carregando...",
+					    "sProcessing": "Processando...",
+					    "sZeroRecords": "Nenhum registro encontrado",
+					    "sSearch": "Pesquisar",
+					    "oPaginate": {
+					        "sNext": "Próximo",
+					        "sPrevious": "Anterior",
+					        "sFirst": "Primeiro",
+					        "sLast": "Último"
+					    },
+					    "oAria": {
+					        "sSortAscending": ": Ordenar colunas de forma ascendente",
+					        "sSortDescending": ": Ordenar colunas de forma descendente"
+					    }
+					}
+			    });
+			});
+			</script>
+</cc:implementation>
+</html>
