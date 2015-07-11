@@ -8,6 +8,7 @@
 		<class>com.jsf22.html5.app.model.auth.Usuario</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+	    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
@@ -15,6 +16,8 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="eclipselink.ddl-generation" value="update" />
+			
+			<property name="hibernate.cache.use_query_cache" value="true"/>
 		</properties>
 	</persistence-unit>
 	

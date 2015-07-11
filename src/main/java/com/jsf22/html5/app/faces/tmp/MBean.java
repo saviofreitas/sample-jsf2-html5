@@ -22,9 +22,15 @@ public class MBean implements Serializable {
 	
 	private List<Teste> testes;
 	
+	private static final String ESTADO_DE_NOVO = "_novo";
+	private static final String ESTADO_DE_EDICAO = "_edicao";
+	private static final String ESTADO_DE_PESQUISA = "_pesquisa";
+	private String state = ESTADO_DE_PESQUISA;
+	
 	@PostConstruct
 	public void init() {
 		carregarTestes();
+		setState(ESTADO_DE_PESQUISA);
 	}
 	
 	public void submit() {
@@ -35,6 +41,14 @@ public class MBean implements Serializable {
 		}
 	}
 	
+	public void listar() {
+		carregarTestes();
+		setState(ESTADO_DE_PESQUISA);
+	}
+	
+	public void novo() {
+		setState(ESTADO_DE_NOVO);
+	}
 	public void sleep() {
         try {
             Thread.sleep(5000);
@@ -66,4 +80,19 @@ public class MBean implements Serializable {
 		}
 	}
 
+	public boolean isPesquisando() {
+		return state.equalsIgnoreCase(ESTADO_DE_PESQUISA);
+	}
+	
+	public boolean isInserindo() {
+		return state.equalsIgnoreCase(ESTADO_DE_NOVO);
+	}
+	
+	public boolean isEditando() {
+		return state.equalsIgnoreCase(ESTADO_DE_EDICAO);
+	}
+	
+	private void setState(String state) {
+		this.state = state;
+	}
 }

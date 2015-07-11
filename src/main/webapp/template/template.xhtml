@@ -16,7 +16,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="shortcut icon" href="#{PATH}/resources/images/favicon.ico" type="image/x-icon" />
 	
-	<title>#{messages['main.app.title']}</title>
+	<title><ui:insert name="title">#{messages['main.app.title']}</ui:insert></title>
 	<link type="text/css" rel="stylesheet" href="#{PATH}/resources/css/bootstrap/bootstrap.min.css" />	
 	<link type="text/css" rel="stylesheet" href="#{PATH}/resources/css/navbar.css" />
 	<link type="text/css" rel="stylesheet" href="#{PATH}/resources/css/main.css" />
@@ -33,10 +33,10 @@
     <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
 </head>
 
-<body jsf:id="body" role="document">
+<body jsf:id="body" jsf:role="document">
 
-	<nav class="navbar navbar-default navbar-fixed-top top-navigation " role="navigation">
-		<div class="container">
+	<nav class="navbar navbar-default navbar-fixed-top top-navigation " jsf:role="navigation">
+		<div class="container" jsf:rendered="#{sessionBean.exibeMenu()}">
 			<ui:include src="/template/nav.xhtml" />					
 		</div>
 	</nav>
@@ -56,16 +56,16 @@
 		</div>
 	</header>
 
-	<div class="container" role="alert" jsf:id="msg-area">
+	<div class="container" jsf:role="alert" jsf:id="msg-area">
 	<h:panelGroup rendered="#{(not facesContext.validationFailed) and (not empty facesContext.messageList)}">
 		<div class="row col-md-12">
 			<!-- <a class="close msg-close" data-dismiss="alert">×</a> -->
-			<h:messages id="msgs" errorClass="alert alert-danger" infoClass="alert alert-info" globalOnly="false"
-			warnClass="alert alert-warning" />	
+			<h:messages id="msgs" errorClass="alert alert-danger" infoClass="alert alert-info" 
+			globalOnly="true" warnClass="alert alert-warning" />	
 		</div>
 	</h:panelGroup>
 	</div>	
-	<div class="container" role="main">
+	<div class="container" jsf:role="main">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<ui:insert name="titulo"/>

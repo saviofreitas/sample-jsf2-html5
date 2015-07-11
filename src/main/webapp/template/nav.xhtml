@@ -18,14 +18,14 @@
 
 	<div class="row collapse navbar-collapse" id="main-menu">
 		<div class="col-md-12">
-			<h:form id="form-navigation" prependId="false"
-				rendered="#{sessionBean.exibeMenu()}">
+			<h:form id="form-navigation" prependId="false">
 				<ul class="nav navbar-nav">
 					<li class="active hidden-xs">
 						<h:link outcome="home">
 							<span class="glyphicon glyphicon-home" aria-hidden="true" />
 						</h:link>
 					</li>
+					<li><h:link outcome="livre" value="Acesso Livre" /></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-expanded="false"> <span
 							class="glyphicon glyphicon-cog" aria-hidden="true" />

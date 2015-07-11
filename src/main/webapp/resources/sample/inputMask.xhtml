@@ -14,7 +14,9 @@
 		<cc:attribute name="styleClass" required="false" default="form-control"/>
 		<cc:attribute name="required" default="false" />
 		<cc:attribute name="requiredMessage" required="false" />
+		<cc:attribute name="validator" required="false" type="javax.faces.validator.Validator"/>
 		<cc:attribute name="converter" required="false" type="javax.faces.convert.Converter"/>
+		<cc:attribute name="validatorMessage" required="false" />
 		<cc:attribute name="converterMessage" required="false" />
 		<cc:attribute name="mask" required="true"  />
 	</cc:interface>
@@ -24,7 +26,8 @@
 			styleClass="#{cc.attrs.styleClass}"
 			required="#{cc.attrs.required}"
 			requiredMessage="#{cc.attrs.requiredMessage}"
-			converter="#{cc.attrs.converter}" converterMessage="#{cc.attrs.converterMessage}">
+			converter="#{cc.attrs.converter}" converterMessage="#{cc.attrs.converterMessage}"
+			converter="#{cc.attrs.validator}" converterMessage="#{cc.attrs.validatorMessage}">
 			
 			<cc:insertChildren/>
 		</h:inputText>

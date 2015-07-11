@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 import com.jsf22.html5.app.util.Constantes;
 import com.jsf22.html5.app.util.SenhaUtil;
 
-@Entity
+@Entity @Cacheable(true)
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;

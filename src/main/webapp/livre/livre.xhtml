@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:custom="http://xmlns.jcp.org/jsf/composite/sample"
+	template="/template/template.xhtml"
+	>
+
+	<ui:define name="titulo">
+		<span class="glyphicon glyphicon-ok" /> Acesso Livre
+	</ui:define>
+
+	<ui:define name="body">
+		<h:panelGroup id="panel-geral">
+		<div jsf:id="panel-form" jsf:rendered="#{not mBean.pesquisando}">
+			<h:form id="cad-form" prependId="false" styleClass="form-horizontal" >
+				<div class="well">
+					<h:panelGroup id="form-panel" >					
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-1">
+								<button type="Submit" class="btn btn-success"
+									jsf:actionListener="#{mBean.listar()}">
+									Listar
+									<f:ajax execute="@all" render="panel-geral" />
+								</button>
+							</div>
+						</div>
+					</h:panelGroup>
+				</div>
+			</h:form>					
+		</div>
+		<div jsf:id="panel-list" jsf:rendered="#{mBean.pesquisando}">
+			<h:form id="list-form" prependId="false" styleClass="form-horizontal" >
+				<div class="well">
+					<h:panelGroup id="form-panel-list" >					
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-1">
+								<button type="Submit" class="btn btn-success"
+									jsf:actionListener="#{mBean.novo()}">
+									Novo
+									<f:ajax execute="@all" render="panel-geral" />
+								</button>
+							</div>
+						</div>
+					</h:panelGroup>
+				</div>
+			</h:form>
+			<custom:dataTables id="custom" var="t" value="#{mBean.testes}">
+				<h:column> 
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{t.id}"/>
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Texto</f:facet>
+					<h:outputText value="#{t.texto}"/>
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Outro Texto</f:facet>
+					<h:outputText value="#{t.outroTexto}"/>
+				</h:column>
+				
+				<h:column> 
+					<f:facet name="header">Valor</f:facet>
+					<h:outputText value="#{t.valor}"/>
+				</h:column>
+			</custom:dataTables>	
+		</div>	
+		</h:panelGroup>		
+	</ui:define>
+</ui:composition>
