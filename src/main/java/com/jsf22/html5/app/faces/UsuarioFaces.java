@@ -3,10 +3,12 @@ package com.jsf22.html5.app.faces;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -32,6 +34,12 @@ public class UsuarioFaces implements Serializable {
 	
 	private String novaSenha;
 	private String confirmacaoSenha;
+	
+
+	/* PAGINAÇÃO SOB DEMANDA */
+	private HtmlDataTable dataTable;
+//	private DataModel<Usuario> dataModel;
+	/* PAGINAÇÃO SOB DEMANDA */
 	
 	@PostConstruct
 	public void init() {
@@ -87,7 +95,8 @@ public class UsuarioFaces implements Serializable {
 	
 	private void carregarLista() {
 		Usuario usuarioLogado = (Usuario) JSFUtil.getParametroSession(Constantes.USUARIO_SESSAO);
-		usuarios = usuarioService.obterUsuarios(usuarioLogado);
+		usuarios = new ArrayList<Usuario>(usuarioService.obterUsuarios());
+		usuarios.remove(usuarioLogado);
 	}
 	
 	public Perfil[] getPerfis() {
@@ -125,4 +134,15 @@ public class UsuarioFaces implements Serializable {
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
 	}
+
+	public HtmlDataTable getDataTable() {
+		return dataTable;
+	}
+
+//	public DataModel<Usuario> getDataModel() {
+//		List<Usuario> pagedList = usuarioService.obterUsuarios(getDataTable().getFirst(), getDataTable().getRows());
+//		dataModel = new PagedDataModel<Usuario>(pagedList, usuarios.size());
+//		return dataModel;
+//	}
+	
 }

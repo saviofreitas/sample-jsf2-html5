@@ -18,7 +18,7 @@ public class UsuarioService implements Serializable {
 	private UsuarioDAO usuarioDAO;
 	
 	public Usuario obterUsuario(Long id) {
-		return usuarioDAO.obterUsuario(id);
+		return usuarioDAO.find(id);
 	}
 	
 	public Usuario obterUsuario(String login, String senha) {
@@ -26,27 +26,19 @@ public class UsuarioService implements Serializable {
 	}
 	
 	public void inserir(Usuario usuario) {
-		usuarioDAO.inserirUsuario(usuario);
+		usuarioDAO.save(usuario);
 	}
 	
 	public void alterar(Usuario usuario) {
-		usuarioDAO.alterarUsuario(usuario);
+		usuarioDAO.update(usuario);
 	}
 	
 	public void remover(Usuario usuario) {
-		usuarioDAO.removerUsuario(usuario);
+		usuarioDAO.delete(usuario.getId());
 	}
 	
 	public List<Usuario> obterUsuarios(){
-		return usuarioDAO.obterUsuarios();
+		return usuarioDAO.findAll();
 	}
 
-	/**
-	 * Retorna todos os usuários, exceto o usuário logado.
-	 * @param usuario
-	 * @return
-	 */
-	public List<Usuario> obterUsuarios(Usuario usuario){
-		return usuarioDAO.obterUsuarios(usuario);
-	}
 }

@@ -50,7 +50,7 @@
 				<h:panelGroup id="list-panel" >					
 					<custom:dataTables id="dataTable"
 						styleClass="table table-bordered table-hover table-striped"
-						var="usuario" value="#{usuarioFaces.usuarios}">
+						var="usuario" value="#{usuarioFaces.usuarios}" >
 						<h:column>
 							<f:facet name="header">Login</f:facet>
 							#{usuario.login}

@@ -10,7 +10,7 @@
 
 <cc:interface>
 	<cc:editableValueHolder name="id" targets="#{cc.clientId}" />
-	<cc:attribute name="value" type="java.util.List" />
+	<cc:attribute name="value" type="java.util.List" />	
 	<cc:attribute name="var" required="true" />
 	<cc:attribute name="styleClass" default="table table-bordered table-hover table-striped" />
 </cc:interface>
@@ -21,7 +21,7 @@
 	<script src="#{PATH}/resources/js/dataTables.bootstrap.js"></script>
 	
 	<h:dataTable id="#{cc.clientId}" value="#{cc.attrs.value}"
-		styleClass="#{cc.attrs.styleClass}">
+		styleClass="#{cc.attrs.styleClass}" >
 		<c:set target="#{component}" property="var" value="#{cc.attrs.var}"/>
 		<cc:insertChildren />
 

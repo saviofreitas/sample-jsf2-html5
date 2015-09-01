@@ -8,8 +8,11 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.component.html.HtmlDataTable;
+import javax.faces.model.DataModel;
 
 import com.jsf22.html5.app.model.Teste;
+import com.jsf22.html5.app.model.auth.Usuario;
 import com.jsf22.html5.app.util.JSFUtil;
 import com.jsf22.html5.app.util.ValidacaoUtil;
 
@@ -22,6 +25,11 @@ public class MBean implements Serializable {
 	
 	private List<Teste> testes;
 	
+	/* PAGINAÇÃO SOB DEMANDA */
+	private HtmlDataTable dataTable;
+	private DataModel<Usuario> dataModel;
+	/* PAGINAÇÃO SOB DEMANDA */
+	
 	private static final String ESTADO_DE_NOVO = "_novo";
 	private static final String ESTADO_DE_EDICAO = "_edicao";
 	private static final String ESTADO_DE_PESQUISA = "_pesquisa";
@@ -31,6 +39,7 @@ public class MBean implements Serializable {
 	public void init() {
 		carregarTestes();
 		setState(ESTADO_DE_PESQUISA);
+			
 	}
 	
 	public void submit() {
@@ -95,4 +104,13 @@ public class MBean implements Serializable {
 	private void setState(String state) {
 		this.state = state;
 	}
+
+	public HtmlDataTable getDataTable() {
+		return dataTable;
+	}
+
+	public DataModel<Usuario> getDataModel() {
+		return dataModel;
+	}
+
 }
